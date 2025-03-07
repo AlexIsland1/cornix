@@ -7,17 +7,17 @@ from tradingbot import trading
 from wtpremium import wt
 async def main():
     session_file = 'session.journal'
-    client = TelegramClient(session_file, api_id="24620605", api_hash="7c287a8b251c3fe6548050b6cd216cda")
+    client = TelegramClient(session_file, api_id="", api_hash="")
     await client.connect()
     if not await client.is_user_authorized():
-        phone = '998900452030'
+        phone = ''
         await client.send_code_request(phone)
         code = input("Enter the code you received: ")
         try:
             await client.sign_in(phone, code)
         except Exception as e:
             if "Two-steps verification" in str(e):
-                password = 'Ue,fkt[1'
+                password = ''
                 await client.sign_in(password=password)
     print('Authorized')
     await client(GetDialogsRequest(
